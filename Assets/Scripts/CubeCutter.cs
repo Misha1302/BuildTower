@@ -1,30 +1,40 @@
 using System;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public sealed class CubeCutter : MonoBehaviour
 {
-    //TODO: init from gameManager
-    [SerializeField] private Transform baseCube;
+    [CanBeNull] private Transform _baseCube;
     private Vector3 _point;
 
     // ReSharper disable once InconsistentNaming
     private new Transform transform;
 
-    private void Start()
+    public void Init([CanBeNull] Transform baseCube)
     {
-        _point = baseCube.position;
+        _baseCube = baseCube;
+        if (_baseCube != null) _point = _baseCube.position;
         transform = base.transform;
-
-        CutX();
-        CutY();
     }
 
-    public void CutX()
+    public void Cut()
+    {
+        CutX();
+        CutY();
+
+        var scale = transform.localScale;
+        if (scale.x < 0)
+            scale.x = 0;
+        if (scale.z < 0)
+            scale.z = 0;
+    }
+
+    private void CutX()
     {
         var pos = transform.position;
         var scale = transform.localScale;
 
-        if (pos == _point)
+        if (_baseCube == null || pos == _point)
             return;
 
 
@@ -32,18 +42,18 @@ public sealed class CubeCutter : MonoBehaviour
 
         pos.x -= delta.x / 2;
         scale.x -= Math.Abs(delta.x);
-        scale.x -= 4 - baseCube.localScale.x;
+        scale.x -= 4 - _baseCube.localScale.x;
 
         transform.position = pos;
         transform.localScale = scale;
     }
 
-    public void CutY()
+    private void CutY()
     {
         var pos = transform.position;
         var scale = transform.localScale;
 
-        if (pos == _point)
+        if (_baseCube == null || pos == _point)
             return;
 
 
@@ -51,7 +61,7 @@ public sealed class CubeCutter : MonoBehaviour
 
         pos.z -= delta.z / 2;
         scale.z += -Math.Abs(delta.z);
-        scale.z -= 4 - baseCube.localScale.z;
+        scale.z -= 4 - _baseCube.localScale.z;
 
         transform.position = pos;
         transform.localScale = scale;
