@@ -1,6 +1,4 @@
 using System;
-using Microsoft.Unity.VisualStudio.Editor;
-using TMPro.EditorUtilities;
 using UnityEngine;
 
 public abstract class BaseInputManager : MonoBehaviour

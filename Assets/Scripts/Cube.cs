@@ -16,7 +16,7 @@ public sealed class Cube : MonoBehaviour
     {
         if (previousCube != null)
             transform.localScale = previousCube.transform.localScale;
-        
+
         CubeCutter.Init(previousCube);
     }
 }
