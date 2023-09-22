@@ -11,4 +11,12 @@ public sealed class Cube : MonoBehaviour
     {
         CubeCutter = gameObject.AddComponent<CubeCutter>();
     }
+
+    public void Init(Cube previousCube)
+    {
+        if (previousCube != null)
+            transform.localScale = previousCube.transform.localScale;
+        
+        CubeCutter.Init(previousCube);
+    }
 }

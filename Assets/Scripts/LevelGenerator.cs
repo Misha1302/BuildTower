@@ -22,14 +22,21 @@ public sealed class LevelGenerator : MonoBehaviour, IInitializable
         if (_gameManager.StateMachine.CurrentState != GameState.Game)
             return;
 
+
         if (_previousCube != null)
         {
-            _previousCube.CubeCutter.Cut();
             Destroy(_previousCube.CubeMover);
+
+            if (!_previousCube.CubeCutter.Cut())
+            {
+                Debug.LogError("Cannot to cut the cube.");
+                return;
+            }
         }
 
         var cube = Instantiate(cubePrefab, _position, Quaternion.identity);
-        cube.CubeCutter.Init(_previousCube == null ? null : _previousCube.transform);
+        cube.Init(_previousCube);
+
         _previousCube = cube;
         _position += _offset;
     }
