@@ -25,12 +25,15 @@ public sealed class LevelGenerator : MonoBehaviour, IInitializable
         {
             Destroy(_previousCube.CubeMover);
 
-            if (!_previousCube.CubeCutter.Cut())
+            if (!_previousCube.CubeCutter.Cut(out var cutX))
             {
                 _gameManager.StateMachine.currentState.Value = GameState.Lose;
                 Debug.LogError("Cannot to cut the cube.");
                 return;
             }
+
+            if (!float.IsNaN(cutX))
+                _previousCube.CubeShader.Shade(cutX);
         }
 
         var cube = Instantiate(cubePrefab, _gameManager.GameDataManager.nextCubePosition.Value, Quaternion.identity);

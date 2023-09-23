@@ -3,9 +3,11 @@
 public sealed class Cube : MonoBehaviour
 {
     [SerializeField] private CubeMover cubeMover;
+    [SerializeField] private CubeShader cubeShader;
 
     public CubeCutter CubeCutter { get; private set; }
     public CubeMover CubeMover => cubeMover;
+    public CubeShader CubeShader => cubeShader;
 
     private void Awake()
     {
@@ -18,5 +20,6 @@ public sealed class Cube : MonoBehaviour
             transform.localScale = previousCube.transform.localScale;
 
         CubeCutter.Init(previousCube);
+        CubeShader.Init(previousCube);
     }
 }

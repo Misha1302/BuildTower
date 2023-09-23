@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3648252350493372237}
   - component: {fileID: 8506982657724900969}
   - component: {fileID: 1880949124369150596}
+  - component: {fileID: 5910786768293141000}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -114,6 +115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cubeMover: {fileID: 1880949124369150596}
+  cubeShader: {fileID: 5910786768293141000}
 --- !u!114 &1880949124369150596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,6 +131,19 @@ MonoBehaviour:
   point0: {x: -5, y: 0, z: 0}
   point1: {x: 5, y: 0, z: 0}
   speed: 1
+--- !u!114 &5910786768293141000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1006791083421081785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37bac17a9edc436da31fa1ee099ce7f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shadowCube: {fileID: 0}
 --- !u!1 &5005484340421338296
 GameObject:
   m_ObjectHideFlags: 0

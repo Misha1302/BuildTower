@@ -1,27 +1,11 @@
 using System;
-using JetBrains.Annotations;
-using UnityEngine;
 
-public sealed class CubeCutter : MonoBehaviour
+public sealed class CubeCutter : CubeManipulation
 {
-    private static readonly Vector3 _invalidVector3 = Vector3.positiveInfinity;
-    private Vector3 _point;
-
-    // ReSharper disable once InconsistentNaming
-    private new Transform transform;
-
-    public void Init([CanBeNull] Cube baseCube)
+    public bool Cut(out float cutX)
     {
-        _point = baseCube != null
-            ? baseCube.transform.position
-            : _invalidVector3;
+        cutX = float.NaN;
 
-        transform = base.transform;
-    }
-
-
-    public bool Cut()
-    {
         var pos = transform.position;
         var scale = transform.localScale;
 
@@ -29,11 +13,12 @@ public sealed class CubeCutter : MonoBehaviour
             return true;
 
 
-        var delta = pos - _point;
+        var delta = pos - point;
 
         if (Math.Abs(delta.x) > scale.x)
             return false;
 
+        cutX = scale.x - (scale.x - (pos.x - point.x));
         pos.x -= delta.x / 2;
         scale.x -= Math.Abs(delta.x);
 
@@ -41,11 +26,4 @@ public sealed class CubeCutter : MonoBehaviour
         transform.localScale = scale;
         return true;
     }
-
-    private bool DoesNotMakeSense(Vector3 pos) =>
-        pos == _point
-        // ReSharper disable CompareOfFloatsByEqualityOperator
-        || _point.x == _invalidVector3.x
-        || _point.y == _invalidVector3.y
-        || _point.z == _invalidVector3.z;
 }
