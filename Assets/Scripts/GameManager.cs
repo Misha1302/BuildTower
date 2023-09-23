@@ -15,7 +15,7 @@ public sealed class GameManager : MonoBehaviour
     private void Awake()
     {
         CinemachineVirtualCamera = FindObjectOfType<CinemachineVirtualCamera>();
-        
+
         Input = gameObject.AddComponent<InputFabric>().CreateInputManager();
         StateMachine = gameObject.AddComponent<StateMachine>();
         CameraPositioner = new GameObject().AddComponent<CameraPositioner>();

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class BaseSingleton<T> : MonoBehaviour where T : BaseSingleton<T>
+public abstract class BaseSingleton<T> : MonoBehaviour where T : BaseSingleton<T>
 {
     public static T Instance { get; private set; }
 

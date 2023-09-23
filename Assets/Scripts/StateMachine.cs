@@ -7,11 +7,7 @@ public sealed class StateMachine : MonoBehaviour, IInitializable
     public void Initialize(GameManager gameManager)
     {
         currentState.Value = GameState.Start;
-        
-        gameManager.Input.SubscribeToClick(() =>
-        {
-            if (currentState.Value != GameState.Game)
-                currentState.Value = GameState.Game;
-        });
+
+        gameManager.Input.SubscribeToClick(() => currentState.Value = GameState.Game);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using JetBrains.Annotations;
 
 public sealed class AlertField<T>
@@ -12,6 +13,9 @@ public sealed class AlertField<T>
         get => _value;
         set
         {
+            if (EqualityComparer<T>.Default.Equals(_value, value))
+                return;
+
             _value = value;
             actions?.Invoke(_value);
         }
