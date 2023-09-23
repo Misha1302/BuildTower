@@ -19,9 +19,8 @@ public sealed class CubeCutter : MonoBehaviour
         transform = base.transform;
     }
 
-    public bool Cut() => CutSide(Side.X) && CutSide(Side.Z);
 
-    private bool CutSide(Side side)
+    public bool Cut()
     {
         var pos = transform.position;
         var scale = transform.localScale;
@@ -32,25 +31,11 @@ public sealed class CubeCutter : MonoBehaviour
 
         var delta = pos - _point;
 
-        switch (side)
-        {
-            case Side.X when Math.Abs(delta.x) > scale.x:
-                return false;
-            case Side.X:
-                pos.x -= delta.x / 2;
-                scale.x -= Math.Abs(delta.x);
-                break;
-            case Side.Z when Math.Abs(delta.z) > scale.z:
-                return false;
-            case Side.Z:
-                pos.z -= delta.z / 2;
-                scale.z -= Math.Abs(delta.z);
-                break;
-            case Side.Y:
-                throw new InvalidOperationException("Y is not supported");
-            default:
-                throw new ArgumentOutOfRangeException(nameof(side));
-        }
+        if (Math.Abs(delta.x) > scale.x)
+            return false;
+
+        pos.x -= delta.x / 2;
+        scale.x -= Math.Abs(delta.x);
 
         transform.position = pos;
         transform.localScale = scale;
