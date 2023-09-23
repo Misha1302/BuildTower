@@ -3,15 +3,13 @@ using UnityEngine;
 
 public sealed class CubeShader : CubeManipulation
 {
-    public bool Shade(float cutX)
+    public void Shade(float cutX)
     {
         var pos = transform.position;
         var scale = transform.localScale;
 
         scale.x = cutX;
         SpawnCube(pos, scale);
-
-        return true;
     }
 
     private void SpawnCube(Vector3 pos, Vector3 scale)

@@ -10,7 +10,9 @@ public sealed class CubeMover : MonoBehaviour
     {
         var v = Mathf.PingPong(Time.time * speed, 1);
         var pos = Vector3.Lerp(point0, point1, v);
+
         pos.y = transform.position.y;
+        // ReSharper disable once Unity.InefficientPropertyAccess
         transform.position = pos;
     }
 }

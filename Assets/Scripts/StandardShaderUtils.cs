@@ -2,10 +2,6 @@ using UnityEngine;
 
 public static class StandardShaderUtils
 {
-    private static readonly int _srcBlend = Shader.PropertyToID("_SrcBlend");
-    private static readonly int _dstBlend = Shader.PropertyToID("_DstBlend");
-    private static readonly int _zWrite = Shader.PropertyToID("_ZWrite");
-
     public enum BlendMode
     {
         Opaque,
@@ -13,6 +9,10 @@ public static class StandardShaderUtils
         Fade,
         Transparent
     }
+
+    private static readonly int _srcBlend = Shader.PropertyToID("_SrcBlend");
+    private static readonly int _dstBlend = Shader.PropertyToID("_DstBlend");
+    private static readonly int _zWrite = Shader.PropertyToID("_ZWrite");
 
     public static void ChangeRenderMode(Material standardShaderMaterial, BlendMode blendMode)
     {
@@ -55,6 +55,5 @@ public static class StandardShaderUtils
                 standardShaderMaterial.renderQueue = 3000;
                 break;
         }
-
     }
 }
