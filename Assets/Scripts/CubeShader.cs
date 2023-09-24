@@ -19,8 +19,8 @@ public sealed class CubeShader : CubeManipulation
 
         cube.localScale = scale;
 
-        var pOrN = scale.x < 0 ? -1 : 1;
-        pos.x += pOrN * ((baseCube.transform.localScale / 2).x - pOrN * (cube.transform.localScale / 2).x);
+        var posOrNeg = scale.x < 0 ? -1 : 1;
+        pos.x += posOrNeg * ((baseCube.transform.localScale / 2).x - posOrNeg * (cube.transform.localScale / 2).x);
         cube.position = pos;
     }
 }
