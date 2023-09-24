@@ -11,13 +11,13 @@ public sealed class CubeShadow : MonoBehaviour
         StandardShaderUtils.ChangeRenderMode(_material, StandardShaderUtils.BlendMode.Transparent);
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        transform.Translate(_translation);
+        transform.Translate(_translation * Time.deltaTime);
 
         var materialColor = _material.color;
         if (materialColor.a > 0)
-            materialColor.a -= 0.02f;
+            materialColor.a -= 0.02f * Time.deltaTime;
         else
             Destroy(gameObject);
 
