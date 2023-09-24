@@ -24,7 +24,7 @@ public sealed class CubeMover : MonoBehaviour
     private void Update()
     {
         var coefficient = Mathf.PingPong(_time, 1);
-        var pos = Vector3.Lerp(point0, point1, coefficient);
+        var pos = GetLerp(coefficient);
 
         pos.y = transform.position.y;
         // ReSharper disable once Unity.InefficientPropertyAccess
@@ -35,4 +35,6 @@ public sealed class CubeMover : MonoBehaviour
     {
         _time += _scaler;
     }
+
+    public Vector3 GetLerp(float coefficient) => Vector3.Lerp(point0, point1, coefficient);
 }

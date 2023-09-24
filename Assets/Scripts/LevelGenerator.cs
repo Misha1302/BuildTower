@@ -13,6 +13,15 @@ public sealed class LevelGenerator : MonoBehaviour, IInitializable
         _gameManager = gameManager;
         _gameManager.Input.SubscribeToClick(OnClick);
         _gameManager.GameDataManager.cubeOffset.Value = new Vector3(0, cubePrefab.transform.lossyScale.y + 0.05f, 0);
+
+
+        _previousCube = Instantiate(cubePrefab, Vector3.zero, Quaternion.identity);
+        _previousCube!.transform.position = _previousCube.CubeMover.GetLerp(0.5f);
+
+        _gameManager.GameDataManager.nextCubePosition.Value += _gameManager.GameDataManager.cubeOffset.Value;
+        Destroy(_previousCube.CubeMover);
+        Destroy(_previousCube.CubeCutter);
+        Destroy(_previousCube.CubeShader);
     }
 
     private void OnClick()
@@ -21,7 +30,10 @@ public sealed class LevelGenerator : MonoBehaviour, IInitializable
             return;
 
 
-        if (_previousCube != null)
+        if (_previousCube != null
+            && _previousCube.CubeMover != null
+            && _previousCube.CubeCutter != null
+            && _previousCube.CubeShader != null)
         {
             Destroy(_previousCube.CubeMover);
 
