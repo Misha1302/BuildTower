@@ -2,7 +2,7 @@ using UnityEngine;
 
 public sealed class CubeShadow : MonoBehaviour
 {
-    private readonly Vector3 _translation = Vector3.down * 0.02f;
+    private readonly Vector3 _translation = Vector3.down;
     private Material _material;
 
     private void Start()
@@ -17,7 +17,7 @@ public sealed class CubeShadow : MonoBehaviour
 
         var materialColor = _material.color;
         if (materialColor.a > 0)
-            materialColor.a -= 0.02f * Time.deltaTime;
+            materialColor.a -= Time.deltaTime;
         else
             Destroy(gameObject);
 

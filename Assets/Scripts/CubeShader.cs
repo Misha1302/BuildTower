@@ -17,6 +17,7 @@ public sealed class CubeShader : CubeManipulation
         var cube = GameObject.CreatePrimitive(PrimitiveType.Cube).transform;
         cube.AddComponent<CubeShadow>();
 
+        scale.x /= 2;
         cube.localScale = scale;
 
         var posOrNeg = scale.x < 0 ? -1 : 1;
