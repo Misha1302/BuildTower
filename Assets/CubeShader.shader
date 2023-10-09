@@ -1,4 +1,4 @@
-Shader "Custom/NewSurfaceShader 1"
+Shader "Custom/CubeShader"
 {
     Properties
     {
@@ -48,7 +48,7 @@ Shader "Custom/NewSurfaceShader 1"
 
         void surf (Input IN, inout SurfaceOutputStandard o)
         {
-            fixed4 c = lerp(_Color, _Color2, ((smoothstep(0, 1, _Offset + IN.screenPos.y * _Coefficient))));
+            fixed4 c = lerp(_Color, _Color2, smoothstep(0, 1, _Offset + IN.screenPos.y * _Coefficient));
             o.Albedo = c.rgb;
             // Metallic and smoothness come from slider variables
             o.Metallic = _Metallic;
