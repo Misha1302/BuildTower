@@ -1,4 +1,5 @@
-﻿using Unity.VisualScripting;
+﻿using Cinemachine.Utility;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public sealed class CubeShader : CubeManipulation
@@ -18,7 +19,7 @@ public sealed class CubeShader : CubeManipulation
         cube.AddComponent<CubeShadow>();
 
         scale.x /= 2;
-        cube.localScale = scale;
+        cube.localScale = scale.Abs();
 
         var posOrNeg = scale.x < 0 ? -1 : 1;
         pos.x += posOrNeg * ((baseCube.transform.localScale / 2).x - posOrNeg * (cube.transform.localScale / 2).x);

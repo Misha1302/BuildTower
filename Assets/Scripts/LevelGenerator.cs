@@ -1,3 +1,4 @@
+using System;
 using JetBrains.Annotations;
 using UnityEngine;
 
@@ -7,6 +8,8 @@ public sealed class LevelGenerator : MonoBehaviour, IInitializable
 
     private GameManager _gameManager;
     [CanBeNull] private Cube _previousCube;
+
+    [CanBeNull] public Action onCubeInstantiated;
 
     public void Initialize(GameManager gameManager)
     {
@@ -53,5 +56,7 @@ public sealed class LevelGenerator : MonoBehaviour, IInitializable
 
         _previousCube = cube;
         _gameManager.GameDataManager.nextCubePosition.Value += _gameManager.GameDataManager.cubeOffset.Value;
+
+        onCubeInstantiated?.Invoke();
     }
 }
