@@ -2,5 +2,5 @@
 
 public static class DataTransfer
 {
-    public static Dictionary<string, object> Data = new();
+    public static Dictionary<string, object> Data;
 }
