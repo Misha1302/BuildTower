@@ -7,7 +7,7 @@
     {
         private const float Multiplier = 1;
         private readonly Vector3 _offset = new(-6 * Multiplier, 4 * Multiplier, 6 * Multiplier);
-        private readonly Vector3 _rotation = new(30, 135, 0);
+        private readonly Vector3 _rotation = new(45, 135, 0);
 
         private GameManager _gameManager;
 
